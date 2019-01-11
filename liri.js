@@ -1,3 +1,10 @@
+
+//********************* */ 1/9/19 UPDATE: So tomorrow, in the morning, start
+// a pseucode on this HW; I think it would be very important for me
+// and start a good foundation for the app. (I think the foundation is inquirer) also start 
+// really reading the instructions so i can have a good grasp of what im doing 
+// (actually first then do pseucode it out!!!!!*************************)
+
 // Client ID 5422b389d37b4b27a27dcb61c5659b97
 // Client Secret 45ea0d850a79406596d3599912128cfb
 var moment = require('moment');
@@ -6,7 +13,7 @@ moment().format();
 require("dotenv").config();
 var http = require("http");
 var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);
+//var spotify = new Spotify(keys.spotify);
 /* Load the HTTP library */
 
 
@@ -18,6 +25,7 @@ var spotify = new Spotify(keys.spotify);
 //     response.end();
 // }).listen(8888);
 // Create a "Prompt" with a series of questions.
+var inquirerFunction = function(){
 inquirer
   .prompt([
     // Here we create a basic text prompt.
@@ -57,3 +65,6 @@ inquirer
       console.log("\nThat's okay " + inquirerResponse.username + ", come again when you are more sure.\n");
     }
   });
+}
+inquirerFunction();
+
