@@ -45,7 +45,7 @@ var startSpotify = function(songName){
         );
       });
 
-  // IF/ELSE IF STATEMENTS ONE-AT-A-TIME****  ***********!!!!!!!!!********
+  // IF/ELSE STATEMENTS ONE-AT-A-TIME****  ***********!!!!!!!!!********
       }else if (thirdCommand === 'spotify-this-song'){
         var Song = fourthCommand;
         var searchTrack;
@@ -62,13 +62,13 @@ var startSpotify = function(songName){
             logIt('Error occurred: ' + error);
             return;
           } else {
-            console.log("\n---------------------------------------------------\n");
+            console.log("\n----------------------------------------*********\n");
             console.log("Artist: " + data.tracks.items[0].artists[0].name);
             console.log("Song: " + data.tracks.items[0].name);
             console.log("Preview: " + data.tracks.items[0].href);
             console.log("Album: " + data.tracks.items[0].album.name);
             
-            console.log("\n---------------------------------------------------\n");
+            console.log("\n----------------------------------------***********\n");
             
           }
         });
@@ -82,27 +82,26 @@ var startSpotify = function(songName){
       request(queryUrl, function(err, response, data) { // cant have a response back its annoying
         // console.log(data);
         var formattedData = JSON.parse(data); // 
-        //var dateTime = moment(formattedData[0].datetime).format("MM/DD/YYYY");
+        
+        // * Title of the movie.
         console.log("Title: " + formattedData.Title);//switched to formattedData because turned this any value to a string on line 83
+        // * Year the movie came out.
         console.log("Year: " + formattedData.Year);
+        // * IMDB Rating of the movie.
         console.log("imdbRating: " + formattedData.imdbRating);
+        // * Rotten Tomatoes Rating of the movie.
         console.log("Rotten Tomatoes: " + formattedData["Rotten Tomatoes"]);
+        // * Country where the movie was produced.
         console.log("Country: " + formattedData.Country);
+        // * Language of the movie.
         console.log("Language: " + formattedData.Language);
+        // * Plot of the movie.
         console.log("Plot: " + formattedData.Plot);
+        // * Actors in the movie.
         console.log("Actors: " + formattedData.Actors);
 
-
-
         });
-        // * Title of the movie.
-        // * Year the movie came out.
-        // * IMDB Rating of the movie.
-        // * Rotten Tomatoes Rating of the movie.
-        // * Country where the movie was produced.
-        // * Language of the movie.
-        // * Plot of the movie.
-        // * Actors in the movie.
+        
      
     }
 
@@ -123,8 +122,11 @@ var startSpotify = function(songName){
   //console.log(data); 
   });
 }
-startSpotify("Juicy");
-
+var runProgram = function(){
+  console.log("If Program does't work make sure the typing is accurate.")
+  startSpotify("Master");//modify function//song in parameter is just a example
+}
+runProgram();
 
 
 
