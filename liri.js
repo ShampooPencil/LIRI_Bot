@@ -122,27 +122,55 @@ var startSpotify = function(songName){
       // fs.writeFileSync('./random.txt', splitData.splice.join('\n'));
       // console.log(line); // random line
       var arguments = data.split(',');
-      console.log(arguments[0]);
-      console.log(arguments[1]);
-        for(var i = 0; i < arguments.length; i++){
+      console.log("\n*********-----------------------------***********\n");
+      // console.log(arguments[0]);
+      // console.log(arguments[1]);
+      console.log(arguments);
+        //var Song = fourthCommand;
+        var searchTrack;
+        if (arguments[1] === undefined) {
+          searchTrack = "The Sign ace of base";
+        }else {
+          searchTrack = arguments[1];
+        }
+        spotify.search({
+          type: 'track',
+          query: arguments[1]
+        }, function(error, data) {
+          if (error) {
+            logIt('Error occurred: ' + error);
+            return;
+          } else {
+            console.log("\n*********---------------------------------*********\n");
+            console.log("Artist: " + data.tracks.items[0].artists[0].name);
+            console.log("Song: " + data.tracks.items[0].name);
+            console.log("Preview: " + data.tracks.items[0].href);
+            console.log("Album: " + data.tracks.items[0].album.name);
+            
+            console.log("\n*********-----------------------------***********\n");
+            
+          }
+        });
+
+        // for(var i = 0; i < arguments.length; i++){
           
       
-        if(fourthCommand === 'concert-this'){
-          console.log("\n*********-----------------------------***********\n");
-          console.log(arguments[i]);
-          console.log("\n*********-----------------------------***********\n");
-        }
-        else if(fourthCommand === 'spotify-this-song'){
-          console.log("\n*********-----------------------------***********\n");
-          console.log(arguments[i]);
-          console.log("\n*********-----------------------------***********\n");
-        }
-        else if(fourthCommand === 'movie-this'){
-          console.log("\n*********-----------------------------***********\n");
-          console.log(arguments[i]);
-          console.log("\n*********-----------------------------***********\n");
-        }
-      }
+        // if(fourthCommand === 'concert-this'){
+        //   console.log("\n*********-----------------------------***********\n");
+        //   console.log(arguments[i]);
+        //   console.log("\n*********-----------------------------***********\n");
+        // }
+        // else if(fourthCommand === 'spotify-this-song'){
+        //   console.log("\n*********-----------------------------***********\n");
+        //   console.log(arguments[i]);
+        //   console.log("\n*********-----------------------------***********\n");
+        // }
+        // else if(fourthCommand === 'movie-this'){
+        //   console.log("\n*********-----------------------------***********\n");
+        //   console.log(arguments[i]);
+        //   console.log("\n*********-----------------------------***********\n");
+        // }
+     //}
      }); //basically pulled data from the file
 
 //tip..maybe put this in a function
