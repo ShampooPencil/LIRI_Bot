@@ -10,6 +10,7 @@ var keys = require("./keys.js"); //import file instead of npm
 var Spotify = require('node-spotify-api');
 var request = require("request");
 var fs = require('fs');
+var readline = require('line-read');
 //var spotify = new Spotify(keys.spotify);
 /* Load the HTTP library */
 
@@ -34,15 +35,18 @@ var startSpotify = function(songName){
    }
    if (thirdCommand === 'concert-this'){
     var artist = fourthCommand;
-    console.log(artist);
+    console.log("\n*********-----------------------------***********\n");
+    console.log("Artist(s): " + artist);
     var queryUrl = "https://rest.bandsintown.com/artists/"+artist+"/events?app_id=codecademy";
     request(queryUrl, function(err, response, data) { // cant have a response back its annoying
-      // console.log(data);
+      //console.log(data);//if I need more data.names/values etc.
       var formattedData = JSON.parse(data);
       var dateTime = moment(formattedData[0].datetime).format("MM/DD/YYYY");
+      console.log("\n*********-----------------------------***********\n");
       console.log(
           "Venue: " + formattedData[0].venue.name + "\nLocation: " + formattedData[0].venue.city + "\nDate: " + dateTime
         );
+        console.log("\n*********-----------------------------***********\n");
       });
 
   // IF/ELSE STATEMENTS ONE-AT-A-TIME****  ***********!!!!!!!!!********
@@ -62,13 +66,13 @@ var startSpotify = function(songName){
             logIt('Error occurred: ' + error);
             return;
           } else {
-            console.log("\n----------------------------------------*********\n");
+            console.log("\n*********---------------------------------*********\n");
             console.log("Artist: " + data.tracks.items[0].artists[0].name);
             console.log("Song: " + data.tracks.items[0].name);
             console.log("Preview: " + data.tracks.items[0].href);
             console.log("Album: " + data.tracks.items[0].album.name);
             
-            console.log("\n----------------------------------------***********\n");
+            console.log("\n*********-----------------------------***********\n");
             
           }
         });
@@ -83,6 +87,7 @@ var startSpotify = function(songName){
         // console.log(data);
         var formattedData = JSON.parse(data); // 
         
+        console.log("\n*********-----------------------------***********\n");
         // * Title of the movie.
         console.log("Title: " + formattedData.Title);//switched to formattedData because turned this any value to a string on line 83
         // * Year the movie came out.
@@ -99,6 +104,7 @@ var startSpotify = function(songName){
         console.log("Plot: " + formattedData.Plot);
         // * Actors in the movie.
         console.log("Actors: " + formattedData.Actors);
+        console.log("\n*********-----------------------------***********\n");
 
         });
         
@@ -107,10 +113,36 @@ var startSpotify = function(songName){
 
   else if (thirdCommand === 'do-what-it-says'){
      fs.readFile('random.txt', 'utf8', function(err,data){
-       console.log(data);
-       var arguments = data.split(',');
-       console.log(arguments[0]);
-       console.log(arguments[1]);
+      //console.log(data);
+      //const fs = require('fs'); // use const **
+      //const data = fs.readFileSync('./random.txt');
+      // const splitData = data.split('\n');
+      // const randomNumber = Math.floor(Math.random() * splitData.length);
+      // const line = splitData.splice(randomNumber, 1);
+      // fs.writeFileSync('./random.txt', splitData.splice.join('\n'));
+      // console.log(line); // random line
+      var arguments = data.split(',');
+      console.log(arguments[0]);
+      console.log(arguments[1]);
+        for(var i = 0; i < arguments.length; i++){
+          
+      
+        if(fourthCommand === 'concert-this'){
+          console.log("\n*********-----------------------------***********\n");
+          console.log(arguments[i]);
+          console.log("\n*********-----------------------------***********\n");
+        }
+        else if(fourthCommand === 'spotify-this-song'){
+          console.log("\n*********-----------------------------***********\n");
+          console.log(arguments[i]);
+          console.log("\n*********-----------------------------***********\n");
+        }
+        else if(fourthCommand === 'movie-this'){
+          console.log("\n*********-----------------------------***********\n");
+          console.log(arguments[i]);
+          console.log("\n*********-----------------------------***********\n");
+        }
+      }
      }); //basically pulled data from the file
 
 //tip..maybe put this in a function
